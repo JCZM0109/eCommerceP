@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Heading } from '@chakra-ui/react'
+import { Button, ButtonGroup, Box, Heading } from '@chakra-ui/react'
 import { useState } from 'react'
 
 //Componente de react, la pagina es todo un componente.
@@ -16,7 +16,13 @@ export default function CompReactexportado() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-          <Heading>We got Chakra UI</Heading>
+          <Heading as="h3" size="lg">We got Chakra UI</Heading>
+          <Button size="lg" variant='ghost' onClick={() => {
+            alert('Do not click it')
+          }} colorScheme='blue'>Button</Button>
+          <Box bg='tomato' w='80%' p={4} color='white'>
+            Se creo la caja
+          </Box>
       </main>
     </>
   )
