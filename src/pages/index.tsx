@@ -2,9 +2,8 @@ import Head from 'next/head'
 import { Button, Box, Heading } from '@chakra-ui/react'
 import { useState } from 'react'
 import { GetServerSidePropsContext } from 'next';
-import Image from "next/image";
-import Link from "next/link";
-
+import { Headerpru } from '@/components/headerpru';
+import { TopBar } from '@/components/TopBar';
 
 type Product = {
   id: number;
@@ -37,38 +36,8 @@ export default function CompReactexportado({products}: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <header>
-          <Image src="/logo.svg" alt="" width={100} height={48}/>
-          <nav>
-            <ul>
-              <li><Link href="#">About Us</Link></li>
-              <li><Link href="#">Womer</Link></li>
-              <li><Link href="#">Men</Link></li>
-              <li><Link href="#">Beauty</Link></li>
-              <li><Link href="#">Accesories</Link></li>
-              <li><Link href="#">Blog</Link></li>
-              <li><Link href="#">Contact</Link></li>
-            </ul>
-          </nav>
-          <div className='commerce-menu'>
-            <ul>
-              <li>
-                <Link href="#"> </Link>
-              </li>
-              <li>
-                <Link href="#"> </Link>
-              </li>
-              <li>
-                <Link href="#"></Link>
-              </li>
-              <li>
-                <Link href="#"></Link>
-              </li>
-            </ul>
-
-          </div>
-        </header>
-      
+        <TopBar/>
+        <Headerpru/>
         <Button>Add to cart</Button>
         <ol>
         {products.map(product => {

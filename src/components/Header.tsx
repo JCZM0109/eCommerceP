@@ -12,7 +12,7 @@ export function Header() {
         <nav>
             <Flex as="ul" listStyleType="none" gap="2rem">
                 <li><Link href="#">About us</Link></li>
-                <li><Link href="#">Woman</Link></li>
+                <li><Link href="#">Women</Link></li>
                 <li><Link href="#">Men</Link></li>
                 <li><Link href="#">Beauty</Link></li>
                 <li><Link href="#">Accesories</Link></li>
