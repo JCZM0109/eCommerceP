@@ -11,6 +11,11 @@ export const buttonTheme = defineStyleConfig({
   defaultProps: {
     colorScheme: 'brand',
   },
+  baseStyle: {
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    padding: '0 2.5rem',
+  },
 })
 
 const theme = extendTheme({
@@ -23,17 +28,17 @@ const theme = extendTheme({
   },
   colors: {
     brand:{
-      100: '#000',
-      200: '#000',
-      300: '#000',
-      400: '#000',
-      500: '#000',
-      600: '#000',
-      700: '#000',
-      800: '#000',
-      900: '#000',
+      100: '#f1f1f1',
+      200: '#d4d4d4',
+      300: '#b8b8b8',
+      400: '#9c9c9c',
+      500: '#808080',
+      600: '#636363',
+      700: '#474747',
+      800: '#2a2a2a',
+      900: '#121212',
     }
-  },
+  }
 })
 
 
