@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Headerpru() {
     return (<header>
-    <Image src="/logo.svg" alt="" width={100} height={48}/>
+    <Image src="/logo.svg" alt="" width={80} height={35}/>
     <nav>
     <ul>
         <li><Link href="#">About Us</Link></li>
@@ -31,7 +31,6 @@ export function Headerpru() {
         <Link href="#"><Image src="/ico-bag.svg" alt="" width={24} height={24}/></Link>
         </li>
     </ul>
-
     </div>
     </header>
     )
