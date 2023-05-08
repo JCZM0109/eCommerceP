@@ -2,6 +2,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
 import '@fontsource/spartan/400.css'
+import '@fontsource/spartan/700.css'
 import type { AppProps } from 'next/app'
 
 const theme = extendTheme({
