@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Button, ButtonGroup, Box, Heading } from '@chakra-ui/react'
+import { Button, Box, Heading } from '@chakra-ui/react'
 import { useState } from 'react'
 import { GetServerSidePropsContext } from 'next';
 
@@ -39,6 +39,7 @@ export default function CompReactexportado({products}: Props) {
           return <li key={product.id}><strong>{product.title}</strong></li>
         })}
         </ol>
+        <Button>Botonsito</Button>
       </main>
     </>
   )
