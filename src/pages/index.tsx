@@ -1,10 +1,13 @@
 import Head from 'next/head'
-import { Button, Box, Heading } from '@chakra-ui/react'
+import { Button, Box, Heading, Grid, GridItem } from '@chakra-ui/react'
 import { useState } from 'react'
 import { GetServerSidePropsContext } from 'next';
 import { TopBar } from '@/components/TopBar';
-import { Header } from '@/components/header';
+import { Header } from '@/components/Header';
+import { slugify } from '@/utils/slugify';
+import Image from "next/image";
 
+//array con estos campos
 type Product = {
   id: number;
   title: string;
@@ -17,15 +20,17 @@ type Product = {
     rate: number;
   } 
   }
+//array que puede ser cualquiera de esos valores
+type Categories = "electronics" | "jewelery" | "men's clothing" | "women's clothing";
 
 type Props = {
-  products: Product[]
+  products: Product[],
+  categories: Categories[]
 }
 //Componente de react, la pagina es todo un componente.
-export default function CompReactexportado({products}: Props) {
-  //PRUEBA
-  console.log(products);
-  const [locadia, setState] = useState('null');
+export default function CompReactexportado({products, categories}: Props) {
+
+
   //render con react es con map, se cogieron los productos de los props exportados directamente
   return (
     <>
@@ -38,12 +43,26 @@ export default function CompReactexportado({products}: Props) {
       <main>
         <TopBar/>
         <Header/>
-        <Button>Add to cart</Button>
-        <ol>
-        {products.map(product => {
-          return <li key={product.id}><strong>{product.title}</strong></li>
-        })}
-        </ol>
+
+
+        <Grid templateColumns="540px 255px 255px" gap="1rem" templateRows="200px 260px">
+          {categories.map((cat, key) =>{
+
+            const slug = slugify(cat)
+            const imageUrl = `/pic-${slug}.jpg`
+
+            if(key == 0){
+              return <GridItem position="relative" w='100%' h='100%' bg='red.500' rowSpan={2} key={key}><Image src={imageUrl} fill={true} alt={cat}/></GridItem> 
+            }
+            if(key == categories.length - 1){
+              return <GridItem w='100%' position="relative" h='100%' bg='green.500' colSpan={2} key={key}><Image src={imageUrl} fill={true} alt={cat}/></GridItem>
+            }
+            return <GridItem w='100%' position="relative" h='100%' bg='blue.500' key={key}><Image src={imageUrl} fill={true} alt={cat}/></GridItem>
+          })
+        }
+        </Grid>
+
+
       </main>
     </>
   )
@@ -53,10 +72,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const products = await fetch('https://fakestoreapi.com/products')
       .then(res=>res.json())
+
+  const categories = await fetch('https://fakestoreapi.com/products/categories')
+      .then(res=>res.json())
   
+  console.log(categories);
   return {
     props: {
-      products
+      products,
+      categories
     }
   }
 }
