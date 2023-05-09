@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Flex, Spacer } from '@chakra-ui/react'
 
 export function TopBar() {
-    return (<Flex bg="gray" w='100%' p={2} color='white' justifyContent={"space-between"} fontSize="xs">
+    return (<Flex bg="gray" w='100%' p={2} color="white" justifyContent={"space-between"} fontSize="xs">
         <Flex gap="1.5rem">
             <Flex as={Link} href="#" alignItems="center" gap="0.5rem"><Image src="/ico-tel.svg" width={24} height={24} alt=""/>+57 (318) 879 1820</Flex>
             <Flex as={Link} href="#" alignItems="center" gap="0.5rem"><Image src="/ico-loc.svg" width={24} height={24} alt=""/>Colombia, Cali,Valle del Cauca</Flex>

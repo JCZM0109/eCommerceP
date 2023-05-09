@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { Button, Box, Heading } from '@chakra-ui/react'
 import { useState } from 'react'
 import { GetServerSidePropsContext } from 'next';
-import { Headerpru } from '@/components/headerpru';
 import { TopBar } from '@/components/TopBar';
+import { Header } from '@/components/header';
 
 type Product = {
   id: number;
@@ -37,7 +37,7 @@ export default function CompReactexportado({products}: Props) {
       </Head>
       <main>
         <TopBar/>
-        <Headerpru/>
+        <Header/>
         <Button>Add to cart</Button>
         <ol>
         {products.map(product => {
