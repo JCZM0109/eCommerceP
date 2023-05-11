@@ -13,6 +13,7 @@ import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
 import { Box, Container, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import { AdvantageSection } from '@/components/AdvantageSection';
 
 
 //array con estos campos
@@ -39,6 +40,7 @@ type Props = {
 
 
 
+
 export default function CompReactexportado({ products, categories }: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
@@ -56,11 +58,7 @@ export default function CompReactexportado({ products, categories }: Props) {
       <main>
         <Container size="lg">
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
-          <Flex justifyContent="space-between" margin="32px 0">
-            <AdvantageItem title="Free shipping" content="On all CO order or orders above $100" icon="/ico-truck.svg"></AdvantageItem>
-            <AdvantageItem title="30 days return" content="Simply return it withing 30 days for an exchange" icon="/ico-return.svg"></AdvantageItem>
-            <AdvantageItem title="Support 24/7" content="Contact us 24 hours a day, 7 days a week" icon="/ico-ring.svg"></AdvantageItem>
-          </Flex>
+          <AdvantageSection/>
         </Container>
       </main>
     </>
