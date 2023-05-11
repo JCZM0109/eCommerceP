@@ -5,13 +5,15 @@ import { GetServerSidePropsContext } from 'next';
 
 import { TopBar } from '@/components/TopBar';
 import { Header } from '@/components/Header';
+import { AdvantageItem } from '@/components/AdvantageItem';
 
 
 
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Box, Container } from '@chakra-ui/react';
+import { Box, Container, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+
 
 //array con estos campos
 type Product = {
@@ -36,6 +38,7 @@ type Props = {
 //Componente de react, la pagina es todo un componente.
 
 
+
 export default function CompReactexportado({ products, categories }: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
@@ -46,13 +49,18 @@ export default function CompReactexportado({ products, categories }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <TopBar />
-        <Box marginBottom="32px">
+      <TopBar />
+      <Box marginBottom="32px">
         <Header />
-        </Box>
+      </Box>
+      <main>
         <Container size="lg">
-        <HomeHeroCategories categories={categories}></HomeHeroCategories>
+          <HomeHeroCategories categories={categories}></HomeHeroCategories>
+          <Flex justifyContent="space-between" margin="32px 0">
+            <AdvantageItem title="Free shipping" content="On all CO order or orders above $100" icon="/ico-truck.svg"></AdvantageItem>
+            <AdvantageItem title="30 days return" content="Simply return it withing 30 days for an exchange" icon="/ico-return.svg"></AdvantageItem>
+            <AdvantageItem title="Support 24/7" content="Contact us 24 hours a day, 7 days a week" icon="/ico-ring.svg"></AdvantageItem>
+          </Flex>
         </Container>
       </main>
     </>
