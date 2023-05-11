@@ -11,7 +11,7 @@ import { Header } from '@/components/Header';
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Container } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 
 //array con estos campos
 type Product = {
@@ -48,7 +48,9 @@ export default function CompReactexportado({ products, categories }: Props) {
       </Head>
       <main>
         <TopBar />
+        <Box marginBottom="32px">
         <Header />
+        </Box>
         <Container size="lg">
         <HomeHeroCategories categories={categories}></HomeHeroCategories>
         </Container>
