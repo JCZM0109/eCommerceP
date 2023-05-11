@@ -18,13 +18,23 @@ export const buttonTheme = defineStyleConfig({
   },
 })
 
+const sizes = {
+  lg: defineStyle({
+    maxW: '1110px',
+    p: 0
+  }),
+}
+
+export const containerTheme = defineStyleConfig({ sizes })
+
 const theme = extendTheme({
   fonts: {
     heading: `'Spartan', sans-serif`,
     body: `'Spartan', sans-serif`,
   },
   components: {
-    Button: buttonTheme
+    Button: buttonTheme,
+    Container: containerTheme
   },
   colors: {
     brand:{

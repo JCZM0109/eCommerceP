@@ -1,12 +1,17 @@
 import Head from 'next/head'
-import { Button, Box, Heading, Grid, GridItem, Flex, GridItemProps } from '@chakra-ui/react'
-import { useState } from 'react'
+
 import { GetServerSidePropsContext } from 'next';
+
+
 import { TopBar } from '@/components/TopBar';
 import { Header } from '@/components/Header';
-import { slugify } from '@/utils/slugify';
-import Image from "next/image";
+
+
+
 import * as React from 'react';
+import { HomeHeroCategories } from '@/components/HomeHeroCategories';
+import { Categories } from '@/models/Categories';
+import { Container } from '@chakra-ui/react';
 
 //array con estos campos
 type Product = {
@@ -19,28 +24,19 @@ type Product = {
   rating: {
     count: number;
     rate: number;
-  } 
   }
-//array que puede ser cualquiera de esos valores
-type Categories = "electronics" | "jewelery" | "men's clothing" | "women's clothing";
+}
+
 
 type Props = {
   products: Product[],
   categories: Categories[]
 }
 
-
-interface CategoryLabelProps{
-  children: React.ReactNode
-}
-
-const CenteredLabel: React.FunctionComponent<CategoryLabelProps> = ({children}) => {
-    return <Flex display="flex" alignItems="center"  justifyContent="center" height="100%">
-      <Box width="fit-content" bgColor="white" padding="1.5rem 3rem" textTransform="uppercase" borderRadius="4" fontWeight="bold" position="relative" zIndex={1}>{children}</Box>
-      </Flex>;
-};
 //Componente de react, la pagina es todo un componente.
-export default function CompReactexportado({products, categories}: Props) {
+
+
+export default function CompReactexportado({ products, categories }: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
     <>
@@ -51,35 +47,11 @@ export default function CompReactexportado({products, categories}: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <TopBar/>
-        <Header/>
-
-
-        <Grid templateColumns="540px 255px 255px" gap="1.5rem" templateRows="200px 260px">
-          {categories.map((cat, key) =>{
-
-            const slug = slugify(cat)
-            const imageUrl = `/pic-${slug}.jpg`
-
-            const props: GridItemProps= {
-              position: "relative",
-              w: "100%",
-              h: "100%"
-            }
-
-            if (key == 0){
-              props.rowSpan = 2
-            }
-
-            if(key == categories.length - 1){
-              props.colSpan = 2
-            }
-
-            return <GridItem {...props}  key={key}><Image src={imageUrl} fill={true} alt={cat}/>
-            <CenteredLabel>{cat}</CenteredLabel></GridItem>
-          })
-        }
-        </Grid>
+        <TopBar />
+        <Header />
+        <Container size="lg">
+        <HomeHeroCategories categories={categories}></HomeHeroCategories>
+        </Container>
       </main>
     </>
   )
@@ -88,11 +60,11 @@ export default function CompReactexportado({products, categories}: Props) {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const products = await fetch('https://fakestoreapi.com/products')
-      .then(res=>res.json())
+    .then(res => res.json())
 
   const categories = await fetch('https://fakestoreapi.com/products/categories')
-      .then(res=>res.json())
-  
+    .then(res => res.json())
+
   console.log(categories);
   return {
     props: {
