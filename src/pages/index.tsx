@@ -5,14 +5,14 @@ import { GetServerSidePropsContext } from 'next';
 
 import { TopBar } from '@/components/TopBar';
 import { Header } from '@/components/Header';
-import { AdvantageItem } from '@/components/AdvantageItem';
+import Image from "next/image";
 
 
 
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Box, Container, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import { AspectRatio, Box, Container, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
 
 
@@ -51,6 +51,7 @@ export default function CompReactexportado({ products, categories }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <TopBar />
       <Box marginBottom="32px">
         <Header />
@@ -60,12 +61,26 @@ export default function CompReactexportado({ products, categories }: Props) {
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
           <AdvantageSection/>
         </Container>
+
+        <Box margin="2rem auto" width="255px" border="solid 2px" borderColor="gray.100">
+          <AspectRatio position="relative" ratio={1} maxWidth="100%">
+            <Image src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt={''} fill={true} style={{ objectFit: "contain"}}></Image>
+          </AspectRatio>  
+            <Text fontSize="xs">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</Text>
+            <Text>$ 38.00</Text>
+        </Box>
+
+        {<ol>
+          {products.map(product => {
+            return <li key={product.id}><strong>{product.title}</strong></li>
+          })}
+        </ol>}
       </main>
     </>
   )
 }
 //esta parte del código se ejecuta en el servidor, se está tratando de obtener el contenido antes de cargar la página.
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext): Promise<{ props: { products: any; categories: any; }; }> {
 
   const products = await fetch('https://fakestoreapi.com/products')
     .then(res => res.json())
