@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Box, Container, Flex, Spacer } from '@chakra-ui/react'
+import { Box, Container, Flex } from '@chakra-ui/react'
 
 export function TopBar() {
     return (<Box bg="black" w='100%' p={2}>

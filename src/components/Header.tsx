@@ -39,7 +39,7 @@ export function Header() {
                             as={IconButton}
                             aria-label='Options'
                             icon={<HamburgerIcon />}
-                            variant='outline'
+                            variant='ghost'
                         />
                         <MenuList>
                             {

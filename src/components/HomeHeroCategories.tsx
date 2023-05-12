@@ -1,4 +1,4 @@
-import { Grid, GridItem, GridItemProps } from "@chakra-ui/react";
+import { Grid, GridItem, GridItemProps, useBreakpointValue } from "@chakra-ui/react";
 import { slugify } from '@/utils/slugify';
 import { CenteredLabel } from '@/components/CenteredLabel';
 import Image from "next/image";
@@ -12,26 +12,45 @@ type Props = {
 }
 
 export function HomeHeroCategories({ categories }: Props) {
-    return (<Grid templateColumns="540px 255px 255px" gap="30px" templateRows="200px 260px">
-        {categories.map((cat, key) => {
+    return (<Grid templateColumns={{
+        base: '1fr 1fr',
+        sm: '540px 255px 255px'
+    }} templateRows={{
+        base: '130px 154px 130px',
+        sm: '200px 260px'
+    }} gap={{ base: ".5rem", sm: "30px" }} templateAreas={{
+        base: `
+            "cat1 cat1"
+            "cat2 cat3"
+            "cat4 cat4"
+        `,
+        sm: `
+            "cat1 cat2 cat3"
+            "cat1 cat4 cat4"
+        `
+    }}>
+        {categories.map((cat, index) => {
             const slug = slugify(cat);
             const imageUrl = `/pic-${slug}.jpg`;
 
             let gridItemProps: GridItemProps = {
                 position: "relative",
                 w: "100%",
-                h: "100%"
+                h: "100%",
+                //Asi se le asigna a cada iteración del map un cat, para hacerlo responsive según el tamaño de la pantalla--
+                gridArea: `cat${index + 1}`
             };
 
-            if (key == 0) {
-                gridItemProps.rowSpan = 2;
-            }
+            //asi se haría sin que sea responsive, hay que pensar en el responsive y en la lógica según el tamaño de la pantalla.
+            // if (index == 0) {
+            //     gridItemProps.gridArea = "cat1";
+            // }
 
-            if (key == categories.length - 1) {
-                gridItemProps.colSpan = 2;
-            }
+            // if (index == categories.length - 1) {
+            //     gridItemProps.gridArea = "cat4";
+            // }
 
-            return <GridItem {...gridItemProps} key={key}><Image src={imageUrl} fill={true} alt={cat} />
+            return <GridItem {...gridItemProps} key={index}><Image src={imageUrl} fill={true} alt={cat} />
                 <CenteredLabel>{cat}</CenteredLabel></GridItem>;
         })}
     </Grid>);
