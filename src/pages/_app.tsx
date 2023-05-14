@@ -7,6 +7,11 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 import '@fontsource/spartan/400.css'
 import '@fontsource/spartan/700.css'
 
+const buttonMobile = defineStyle({
+  color: 'brand.100',
+  bg: 'black',
+})
+
 export const buttonTheme = defineStyleConfig({
   defaultProps: {
     colorScheme: 'brand',
@@ -16,6 +21,7 @@ export const buttonTheme = defineStyleConfig({
     textTransform: 'uppercase',
     padding: '0 2.5rem',
   },
+  variants: {buttonMobile},
 })
 
 const sizes = {

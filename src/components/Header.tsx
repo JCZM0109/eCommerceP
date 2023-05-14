@@ -33,7 +33,7 @@ export function Header() {
     return (<Box w="100%" as="header" borderBottom="solid 2px" borderColor="gray.100">
         <Container as={Flex} justifyContent="space-between" alignItems="center" size="lg">
             <Flex gap={'.5rem'} margin=".5rem 0">
-                <Box as="nav" display={{ md: 'none' }}>
+                <Box as="nav" zIndex={2} display={{ md: 'none' }}>
                     <Menu>
                         <MenuButton
                             as={IconButton}
@@ -44,8 +44,8 @@ export function Header() {
                         <MenuList>
                             {
                                 menu.map((item, index) => {
-                                    return <MenuItem key={index}>
-                                        <Link href={item.href}>{item.title}</Link>
+                                    return <MenuItem as="a" key={index}  href={item.href}>
+                                            {item.title}
                                     </MenuItem>
                                 })
                             }
