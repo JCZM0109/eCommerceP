@@ -35,14 +35,16 @@ export function TopBar() {
                 })}
                 <Show below="md">
                 <Flex>
-                    <Box as="nav" zIndex={2}>
+                    <Box as="nav" zIndex={2} borderLeft="2px" marginLeft="2px" borderColor={"gray"}>
                         <Menu>
                             <MenuButton 
                                 variant="buttonMobile"
                                 as={Button}
                                 padding='0 2px'
                                 fontSize="xs"
-                                aria-label='Options'>More</MenuButton>
+                                textTransform="capitalize"
+                                fontWeight="normal"
+                                aria-label='Options'>More...</MenuButton>
                             <MenuList>
                                 {
                                     tmenu.map((item) => {

@@ -33,7 +33,7 @@ export function Header() {
     return (<Box w="100%" as="header" borderBottom="solid 2px" borderColor="gray.100">
         <Container as={Flex} justifyContent="space-between" alignItems="center" size="lg">
             <Flex gap={'.5rem'} margin=".5rem 0">
-                <Show below="md">
+                <Show below="sm">
                 <Box as="nav" zIndex={2}>
                     <Menu>
                         <MenuButton

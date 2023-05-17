@@ -53,13 +53,14 @@ export default function CompReactexportado({ products, categories }: Props) {
       </Head>
 
       <TopBar />
-      <Box marginBottom="32px">
+      <Box marginBottom={{base: "0", lg: "32px"}}>
         <Header />
       </Box>
       <main>
         <Container size="lg">
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
           <AdvantageSection />
+
           <Flex alignItems="center" minWidth="max-content" justifyContent="space-between" >
           <Grid templateColumns="repeat(4, 1fr)" gap=".5rem">
           
@@ -67,7 +68,7 @@ export default function CompReactexportado({ products, categories }: Props) {
                     products.map((pro) => {
                       return  <Box margin="2rem auto" width="255px" border="solid 2px" borderColor="gray.100">
                                   <AspectRatio position="relative" key={pro.id} ratio={1} maxWidth="100%"><Image src={pro.image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image></AspectRatio>
-                                  <Text fontSize="xs">{pro.title}</Text><Text>{pro.price}</Text>
+                                  <Text fontSize="xs">{pro.title}</Text><Text>${pro.price}</Text>
                               </Box>
                     })
                   }

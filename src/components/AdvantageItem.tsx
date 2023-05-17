@@ -10,7 +10,9 @@ export function AdvantageItem({title, content, icon}: Props) {
     return (<Grid templateColumns={{
       base: "1fr",
       md: "40px 1fr",
-      }} alignItems="center" justifyItems="center" gap={{base:"1rem", md: ".5rem"}}>
+      }} alignItems="center" justifyItems="center" gap={{
+        base:"1rem", md: ".5rem"
+      }}>
       <GridItem><Image src={icon} width={40} height={40} alt='' /></GridItem>
       <GridItem>
         <Text textTransform="uppercase" fontWeight="bold" fontSize="xs">{title}</Text>
