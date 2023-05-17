@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Box, Button, Container, Flex, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { Box, Button, Container, Flex, Menu, MenuButton, MenuItem, MenuList, Show } from '@chakra-ui/react'
 
 const tmenu = [
     {
@@ -33,14 +33,14 @@ export function TopBar() {
                     tmenu.map((item) => {
                     return <Flex as={Link} key={item.key} display={item.display} href={item.href} alignItems="center" gap="0.5rem"><Image src={item.src} width={24} height={24} alt="" />{item.content}</Flex>
                 })}
-                <Flex display={{ md: 'none' }}>
+                <Show below="md">
+                <Flex>
                     <Box as="nav" zIndex={2}>
                         <Menu>
                             <MenuButton 
                                 variant="buttonMobile"
                                 as={Button}
                                 padding='0 2px'
-                                margin='0'
                                 fontSize="xs"
                                 aria-label='Options'>More</MenuButton>
                             <MenuList>
@@ -57,6 +57,7 @@ export function TopBar() {
                         </Menu>
                     </Box>
                 </Flex>
+                </Show>
             </Flex>
 
             <Flex gap="1rem" alignItems="center">

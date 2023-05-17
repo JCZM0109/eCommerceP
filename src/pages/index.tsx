@@ -59,22 +59,28 @@ export default function CompReactexportado({ products, categories }: Props) {
       <main>
         <Container size="lg">
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
-          <AdvantageSection/>
+          <AdvantageSection />
+          <Flex alignItems="center" minWidth="max-content" justifyContent="space-between" >
+          <Grid templateColumns="repeat(4, 1fr)" gap=".5rem">
+          
+                  {
+                    products.map((pro) => {
+                      return  <Box margin="2rem auto" width="255px" border="solid 2px" borderColor="gray.100">
+                                  <AspectRatio position="relative" key={pro.id} ratio={1} maxWidth="100%"><Image src={pro.image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image></AspectRatio>
+                                  <Text fontSize="xs">{pro.title}</Text><Text>{pro.price}</Text>
+                              </Box>
+                    })
+                  }
+          </Grid>
+        </Flex>
         </Container>
+        
 
-        <Box margin="2rem auto" width="255px" border="solid 2px" borderColor="gray.100">
-          <AspectRatio position="relative" ratio={1} maxWidth="100%">
-            <Image src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt={''} fill={true} style={{ objectFit: "contain"}}></Image>
-          </AspectRatio>  
-            <Text fontSize="xs">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</Text>
-            <Text>$ 38.00</Text>
-        </Box>
-
-        {<ol>
+        {/* {<ol>
           {products.map(product => {
             return <li key={product.id}><strong>{product.title}</strong></li>
           })}
-        </ol>}
+        </ol>} */}
       </main>
     </>
   )

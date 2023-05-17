@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Container, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
+import { Container, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Show } from "@chakra-ui/react"
 import { Box } from "@chakra-ui/react"
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -13,7 +13,7 @@ const menu = [
         href: '#',
     }, {
         title: 'Men',
-        href: '#',
+        href: '/men',
     }, {
         title: 'Beauty',
         href: '#',
@@ -33,7 +33,8 @@ export function Header() {
     return (<Box w="100%" as="header" borderBottom="solid 2px" borderColor="gray.100">
         <Container as={Flex} justifyContent="space-between" alignItems="center" size="lg">
             <Flex gap={'.5rem'} margin=".5rem 0">
-                <Box as="nav" zIndex={2} display={{ md: 'none' }}>
+                <Show below="md">
+                <Box as="nav" zIndex={2}>
                     <Menu>
                         <MenuButton
                             as={IconButton}
@@ -52,9 +53,11 @@ export function Header() {
                         </MenuList>
                     </Menu>
                 </Box>
+                </Show>
                 <Image src="/logo(1).svg" alt="" width={100} height={48} />
             </Flex>
-            <Box as="nav" display={{ base: 'none', md: 'block' }} >
+            <Show above="md">
+            <Box as="nav">
                 <Flex as="ul" listStyleType="none" gap="2rem">
                     {       
                         menu.map((item, index) =>  {
@@ -63,6 +66,7 @@ export function Header() {
                     }  
                 </Flex>
             </Box>
+            </Show>
             <div className="commerce-menu">
                 <Flex as="ul" listStyleType="none" gap="1.5rem">
                     <li>
