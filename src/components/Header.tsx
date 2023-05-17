@@ -13,7 +13,7 @@ const menu = [
         href: '#',
     }, {
         title: 'Men',
-        href: '/men',
+        href: '#',
     }, {
         title: 'Beauty',
         href: '#',
