@@ -1,11 +1,10 @@
-import { Grid, GridItem, GridItemProps, useBreakpointValue } from "@chakra-ui/react";
+import { Grid, GridItem, GridItemProps} from "@chakra-ui/react";
 import { slugify } from '@/utils/slugify';
 import { CenteredLabel } from '@/components/CenteredLabel';
 import Image from "next/image";
 import { Categories } from "@/models/Categories";
 
 //array que puede ser cualquiera de esos valores
-
 
 type Props = {
     categories: Categories[]
@@ -24,7 +23,7 @@ export function HomeHeroCategories({ categories }: Props) {
             "cat2 cat3"
             "cat4 cat4"
         `,
-        sm: `
+        md: `
             "cat1 cat2 cat3"
             "cat1 cat4 cat4"
         `

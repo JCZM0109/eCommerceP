@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Container, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Show } from "@chakra-ui/react"
+import { AspectRatio, Container, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Show } from "@chakra-ui/react"
 import { Box } from "@chakra-ui/react"
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -31,9 +31,11 @@ const menu = [
 
 export function Header() {
     return (<Box w="100%" as="header" borderBottom="solid 2px" borderColor="gray.100">
-        <Container as={Flex} justifyContent="space-between" alignItems="center" size="lg">
+        <Container as={Flex} justifyContent="space-between" alignItems="center" size={{
+            lg: "lg",
+        }}>
             <Flex gap={'.5rem'} margin=".5rem 0">
-                <Show below="sm">
+                <Show below="lg">
                 <Box as="nav" zIndex={2}>
                     <Menu>
                         <MenuButton
@@ -54,9 +56,9 @@ export function Header() {
                     </Menu>
                 </Box>
                 </Show>
-                <Image src="/logo(1).svg" alt="" width={100} height={48} />
+                <Image src="/logo(1).svg" alt="" width={48} height={48}  style={{position: "relative", objectFit: "contain"}}/>
             </Flex>
-            <Show above="md">
+            <Show above="lg">
             <Box as="nav">
                 <Flex as="ul" listStyleType="none" gap="2rem">
                     {       

@@ -27,13 +27,15 @@ const tmenu = [
 //p={{ base: 0, sm: 2 }}
 export function TopBar() {
     return (<Box bg="black" w='100%' p={{ base: 0, sm: 2 }}>
-        <Container as={Flex} color="white" justifyContent={"space-between"} fontSize="xs" size="lg">
+        <Container as={Flex} color="white" justifyContent={"space-between"} fontSize="xs" size={{
+            lg: "lg",
+        }}>
             <Flex gap={{ base: ".5rem", md: "1.5rem" }}>
                 {
                     tmenu.map((item) => {
                     return <Flex as={Link} key={item.key} display={item.display} href={item.href} alignItems="center" gap="0.5rem"><Image src={item.src} width={24} height={24} alt="" />{item.content}</Flex>
                 })}
-                <Show below="md">
+                <Show below="sm">
                 <Flex>
                     <Box as="nav" zIndex={2} borderLeft="2px" marginLeft="2px" borderColor={"gray"}>
                         <Menu>

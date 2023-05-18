@@ -5,19 +5,19 @@ import { GetServerSidePropsContext } from 'next';
 
 import { TopBar } from '@/components/TopBar';
 import { Header } from '@/components/Header';
-import Image from "next/image";
 
 
 
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { AspectRatio, Box, Container, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import { Box, Container, SimpleGrid } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
+import { ProductCard } from '@/components/ProductCard';
 
 
 //array con estos campos
-type Product = {
+export type Product = {
   id: number;
   title: string;
   price: number;
@@ -39,8 +39,6 @@ type Props = {
 //Componente de react, la pagina es todo un componente.
 
 
-
-
 export default function CompReactexportado({ products, categories }: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
@@ -53,35 +51,21 @@ export default function CompReactexportado({ products, categories }: Props) {
       </Head>
 
       <TopBar />
-      <Box marginBottom={{base: "0", lg: "32px"}}>
+      <Box marginBottom={{ base: "0", lg: "32px" }}>
         <Header />
       </Box>
       <main>
-        <Container size="lg">
+        <Container size={{
+          lg: "lg",
+        }}>
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
           <AdvantageSection />
-
-          <Flex alignItems="center" minWidth="max-content" justifyContent="space-between" >
-          <Grid templateColumns="repeat(4, 1fr)" gap=".5rem">
-          
-                  {
-                    products.map((pro) => {
-                      return  <Box margin="2rem auto" width="255px" border="solid 2px" borderColor="gray.100">
-                                  <AspectRatio position="relative" key={pro.id} ratio={1} maxWidth="100%"><Image src={pro.image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image></AspectRatio>
-                                  <Text fontSize="xs">{pro.title}</Text><Text>${pro.price}</Text>
-                              </Box>
-                    })
-                  }
-          </Grid>
-        </Flex>
+          {<SimpleGrid minChildWidth="255px" spacing="1.85rem">
+            {products.map(product => {
+              return <ProductCard {...product} key={product.id} />
+            })}
+          </SimpleGrid>}
         </Container>
-        
-
-        {/* {<ol>
-          {products.map(product => {
-            return <li key={product.id}><strong>{product.title}</strong></li>
-          })}
-        </ol>} */}
       </main>
     </>
   )
