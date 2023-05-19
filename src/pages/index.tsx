@@ -60,12 +60,26 @@ export default function CompReactexportado({ products, categories }: Props) {
         }}>
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
           <AdvantageSection />
-          {<SimpleGrid minChildWidth="255px" spacing="1.85rem">
+
+
+
+        </Container>
+
+        {<SimpleGrid minChildWidth={{
+            base: "255px",
+            //lg: "255px"
+          }} spacing="1.85rem" gridAutoFlow={{
+            base: 'column',
+            lg: 'unset'
+          }} gridAutoColumns="255px" 
+            scrollSnapType="x mandatory" 
+            overflowX="scroll">
             {products.map(product => {
-              return <ProductCard {...product} key={product.id} />
+              return <Box key={product.id} scrollSnapAlign="center"><ProductCard {...product} /></Box>
             })}
           </SimpleGrid>}
-        </Container>
+
+
       </main>
     </>
   )
