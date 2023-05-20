@@ -5,7 +5,7 @@ import Image from "next/image";
 
 
 export function ProductCard({ image, title, price, rating }: Product) {
-    return (<Box width="100%" border="solid 2px" borderColor="gray.400" padding=".5rem">
+    return (<Box width="100%">
         <AspectRatio position="relative" ratio={1} maxWidth="100%" marginBottom="1rem">
             <Image src={image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image>
         </AspectRatio>

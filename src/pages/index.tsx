@@ -11,7 +11,7 @@ import { Header } from '@/components/Header';
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Box, Container, SimpleGrid } from '@chakra-ui/react';
+import { Box, Container, Grid, SimpleGrid } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
 import { ProductCard } from '@/components/ProductCard';
 
@@ -60,25 +60,44 @@ export default function CompReactexportado({ products, categories }: Props) {
         }}>
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
           <AdvantageSection />
-
-
-
         </Container>
 
-        {<SimpleGrid minChildWidth={{
-            base: "255px",
-            //lg: "255px"
-          }} spacing="1.85rem" gridAutoFlow={{
-            base: 'column',
-            lg: 'unset'
-          }} gridAutoColumns="255px" 
-            scrollSnapType="x mandatory" 
+        <Container
+          maxW={{
+            base: "100%",
+            md: "1110px",
+          }} paddingX="0">
+          {<Grid
+            gridTemplateColumns={{
+              base: "repeat(auto-fit, 255px)",
+              lg: "repeat(auto-fit, minmax(255px, 1fr))"
+            }}
+            gap="1.85rem" gridAutoFlow={{
+              base: 'column',
+              lg: 'unset'
+            }} gridAutoColumns="255px"
+            gridAutoRows="1fr"
+            alignItems="stretch"
+            scrollSnapType="x mandatory"
             overflowX="scroll">
-            {products.map(product => {
-              return <Box key={product.id} scrollSnapAlign="center"><ProductCard {...product} /></Box>
+            {products.map((product, i) => {
+              return <Box key={product.id}
+                marginLeft={
+                  {
+                  //this is to give a style to the first element of the grid only, notation: if i === 0(first rendered element) then first child will have 1rem the rest 0
+                  base: i === 0 ? "1rem" : "0",
+                  md: "0",
+                }
+              }
+                scrollSnapAlign="center"
+                border="solid 2px"
+                borderColor="gray.400"
+                padding=".5rem">
+                <ProductCard {...product} />
+              </Box>
             })}
-          </SimpleGrid>}
-
+          </Grid>}
+        </Container>
 
       </main>
     </>
