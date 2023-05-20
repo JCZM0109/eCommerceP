@@ -9,7 +9,7 @@ export function ProductCard({ image, title, price, rating }: Product) {
         <AspectRatio position="relative" ratio={1} maxWidth="100%" marginBottom="1rem">
             <Image src={image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image>
         </AspectRatio>
-        <Text color="gray.600" marginBottom="0.75rem" fontSize="xs" noOfLines={2}>{title}</Text>
+        <Text height="36px" color="gray.600" marginBottom="0.75rem" fontSize="xs" noOfLines={2}>{title}</Text>
         <Flex alignItems="center"  justifyContent="space-between">
             <Text>${price}</Text>
             <Flex gap="2px">

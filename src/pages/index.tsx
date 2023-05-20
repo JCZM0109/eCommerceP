@@ -5,6 +5,7 @@ import { GetServerSidePropsContext } from 'next';
 
 import { TopBar } from '@/components/TopBar';
 import { Header } from '@/components/Header';
+import { GroupedProducts, groupProductsByCategory } from '@/utils/groupProductsByCategory';
 
 
 
@@ -13,7 +14,7 @@ import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
 import { Box, Container, Grid, SimpleGrid } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
-import { ProductCard } from '@/components/ProductCard';
+import { HomeProductsGrid } from '@/components/HomeProductsGrid';
 
 
 //array con estos campos
@@ -33,13 +34,15 @@ export type Product = {
 
 type Props = {
   products: Product[],
-  categories: Categories[]
+  categories: Categories[],
+  productsGroupedByCategory: GroupedProducts[],
 }
 
 //Componente de react, la pagina es todo un componente.
 
 
-export default function CompReactexportado({ products, categories }: Props) {
+
+export default function CompReactexportado({ products, categories, productsGroupedByCategory}: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
     <>
@@ -67,38 +70,17 @@ export default function CompReactexportado({ products, categories }: Props) {
             base: "100%",
             md: "1110px",
           }} paddingX="0">
-          {<Grid
-            gridTemplateColumns={{
-              base: "repeat(auto-fit, 255px)",
-              lg: "repeat(auto-fit, minmax(255px, 1fr))"
-            }}
-            gap="1.85rem" gridAutoFlow={{
-              base: 'column',
-              lg: 'unset'
-            }} gridAutoColumns="255px"
-            gridAutoRows="1fr"
-            alignItems="stretch"
-            scrollSnapType="x mandatory"
-            overflowX="scroll">
-            {products.map((product, i) => {
-              return <Box key={product.id}
-                marginLeft={
-                  {
-                  //this is to give a style to the first element of the grid only, notation: if i === 0(first rendered element) then first child will have 1rem the rest 0
-                  base: i === 0 ? "1rem" : "0",
-                  md: "0",
-                }
-              }
-                scrollSnapAlign="center"
-                border="solid 2px"
-                borderColor="gray.400"
-                padding=".5rem">
-                <ProductCard {...product} />
+          {Object.entries(productsGroupedByCategory).map(([category, products]) => {
+            return (
+              <Box key={category} marginTop="2rem">
+                <h2>{category}</h2>
+                <HomeProductsGrid products={products} />
               </Box>
-            })}
-          </Grid>}
+            );
+          })}
         </Container>
 
+          /* {<HomeProductsGrid products={products}></HomeProductsGrid>} */
       </main>
     </>
   )
@@ -107,16 +89,18 @@ export default function CompReactexportado({ products, categories }: Props) {
 export async function getServerSideProps(context: GetServerSidePropsContext): Promise<{ props: { products: any; categories: any; }; }> {
 
   const products = await fetch('https://fakestoreapi.com/products')
-    .then(res => res.json())
+    .then(res => res.json());
 
   const categories = await fetch('https://fakestoreapi.com/products/categories')
-    .then(res => res.json())
+    .then(res => res.json());
 
-  console.log(categories);
+  const productsGroupedByCategory = groupProductsByCategory(products);
+
   return {
     props: {
       products,
-      categories
+      categories,
+      productsGroupedByCategory,
     }
   }
 }

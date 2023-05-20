@@ -15,10 +15,10 @@ const menu = [
         title: 'Men',
         href: '#',
     }, {
-        title: 'Beauty',
+        title: 'Electronics',
         href: '#',
     }, {
-        title: 'Accesories',
+        title: 'Jewelery',
         href: '#',
     }, {
         title: 'Blog',
