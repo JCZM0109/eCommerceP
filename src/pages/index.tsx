@@ -12,7 +12,7 @@ import { GroupedProducts, groupProductsByCategory } from '@/utils/groupProductsB
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Box, Container, Grid, SimpleGrid } from '@chakra-ui/react';
+import { Box, Container, Grid, Heading, SimpleGrid } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
 import { HomeProductsGrid } from '@/components/HomeProductsGrid';
 
@@ -72,8 +72,13 @@ export default function CompReactexportado({ products, categories, productsGroup
           }} paddingX="0">
           {Object.entries(productsGroupedByCategory).map(([category, products]) => {
             return (
-              <Box key={category} marginTop="2rem">
-                <h2>{category}</h2>
+              <Box key={category} mb="4rem">
+                <Heading as="h2" size="md" textTransform="uppercase" margin={{ 
+                  base: "0 0 1rem .5rem",
+                  md: "0 0 1.5rem",
+                }}>
+                    {category}
+                </Heading>
                 <HomeProductsGrid products={products} />
               </Box>
             );
@@ -101,6 +106,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext): Pr
       products,
       categories,
       productsGroupedByCategory,
-    }
-  }
+    },
+  };
 }
