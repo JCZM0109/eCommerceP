@@ -13,7 +13,7 @@ import { GroupedProducts, groupProductsByCategory } from '@/utils/groupProductsB
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Box, Container, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, Button, Container, FormControl, FormHelperText, FormLabel, Grid, Heading, Input, SimpleGrid, Text } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
 import { HomeProductsGrid } from '@/components/HomeProductsGrid';
 
@@ -52,7 +52,7 @@ type Props = {
 
 
 
-export default function CompReactexportado({ products, categories, productsGroupedByCategory }: Props) {
+export default function Home({ products, categories, productsGroupedByCategory }: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
     <>
@@ -118,6 +118,33 @@ export default function CompReactexportado({ products, categories, productsGroup
               </Text>
             </PromoBanner>
           </SimpleGrid>
+        </Container>
+
+        <Container background={'linear-gradient( #F3F2F2 0%, #DCDBDB 100%);'} m="2rem auto" p="1.5rem" maxW="100%">
+          <Box maxW="33rem" margin="auto" as="article" bgColor="white" p="2rem" textTransform="uppercase">
+          <Grid gap="2rem" maxW="22rem" m="auto" textAlign="center" >
+            <header>
+              <Heading size="sm" color="gray">
+                Special Offer
+              </Heading>
+              <Heading size="lg">
+                Subscribe <br></br> and <Text as="span" color="red">get 10% off</Text>
+              </Heading>
+            </header>
+            < Grid as="form" action='' gap="1.5rem">
+              <FormControl>
+                <Input
+                  type='email'
+                  borderRadius="0"
+                  textAlign="inherit"
+                  placeholder="Enter your email"
+                  h="4rem"
+                  backgroundColor="gray.100" />
+              </FormControl>
+              <Button bgColor="black" size="lg" h="4rem" borderRadius="0" w="100%">Subscribe</Button>
+            </Grid>
+          </Grid>
+          </Box>
         </Container>
 
 
