@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 import { GetServerSidePropsContext } from 'next';
+import Image from "next/image";
 
 
 import { TopBar } from '@/components/TopBar';
@@ -12,9 +13,12 @@ import { GroupedProducts, groupProductsByCategory } from '@/utils/groupProductsB
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Box, Container, Grid, Heading, SimpleGrid } from '@chakra-ui/react';
+import { Box, Container, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
 import { HomeProductsGrid } from '@/components/HomeProductsGrid';
+import bannerNewSeason from '/public/banner-new-season.jpg';
+import bannerSale from '/public/banner-sale.jpg';
+import { CenteredLabel } from '@/components/CenteredLabel';
 
 
 //array con estos campos
@@ -42,7 +46,7 @@ type Props = {
 
 
 
-export default function CompReactexportado({ products, categories, productsGroupedByCategory}: Props) {
+export default function CompReactexportado({ products, categories, productsGroupedByCategory }: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
     <>
@@ -73,11 +77,11 @@ export default function CompReactexportado({ products, categories, productsGroup
           {Object.entries(productsGroupedByCategory).map(([category, products]) => {
             return (
               <Box key={category} mb="4rem">
-                <Heading as="h2" size="md" textTransform="uppercase" margin={{ 
+                <Heading as="h2" size="md" textTransform="uppercase" margin={{
                   base: "0 0 1rem .5rem",
                   md: "0 0 1.5rem",
                 }}>
-                    {category}
+                  {category}
                 </Heading>
                 <HomeProductsGrid products={products} />
               </Box>
@@ -85,7 +89,43 @@ export default function CompReactexportado({ products, categories, productsGroup
           })}
         </Container>
 
-          /* {<HomeProductsGrid products={products}></HomeProductsGrid>} */
+        <Container size={{ lg: 'lg' }}>
+          <SimpleGrid minChildWidth={255} spacing={{
+            base: "1rem",
+            md: "2rem",
+          }}>
+            {/* This form of import is to be used when we know an image dimensions. */}
+            <Box position="relative">
+              <Image src={bannerNewSeason} alt=""></Image>
+              <Box position="absolute" left="50%" top="50%" transform="translate(-50%, -50%)">
+                <CenteredLabel>
+                  <Text fontSize="sm" color="gray.400">
+                    New season
+                  </Text>
+                  <Text fontSize="md" whiteSpace={'nowrap'} fontStyle="bold">
+                    Lookbook collection
+                  </Text>
+                </CenteredLabel>
+              </Box>
+            </Box>
+            <Box position="relative">
+              <Image src={bannerSale} alt=""></Image>
+              <Box position="absolute" left="50%" top="50%" transform="translate(-50%, -50%)">
+                <CenteredLabel>
+                  <Text fontSize="sm" color="gray.400">
+                    Sale
+                  </Text>
+                  <Text fontSize="md" whiteSpace={'nowrap'} fontStyle="bold">
+                    Get up to <Text as="span" color="red">50% Off</Text>
+                  </Text>
+                </CenteredLabel>
+              </Box>
+            </Box>
+          </SimpleGrid>
+        </Container>
+
+
+        {/* {<HomeProductsGrid products={products}></HomeProductsGrid>}  */}
       </main>
     </>
   )

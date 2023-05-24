@@ -1,4 +1,4 @@
-import { Grid, GridItem, GridItemProps} from "@chakra-ui/react";
+import { Flex, Grid, GridItem, GridItemProps} from "@chakra-ui/react";
 import { slugify } from '@/utils/slugify';
 import { CenteredLabel } from '@/components/CenteredLabel';
 import Image from "next/image";
@@ -50,7 +50,10 @@ export function HomeHeroCategories({ categories }: Props) {
             // }
 
             return <GridItem {...gridItemProps} key={index}><Image src={imageUrl} fill={true} alt={cat} />
-                <CenteredLabel>{cat}</CenteredLabel></GridItem>;
+                    <Flex display="flex" alignItems="center"  justifyContent="center" height="100%">
+                        <CenteredLabel>{cat}</CenteredLabel>
+                    </Flex>
+                    </GridItem>;
         })}
     </Grid>);
 }
