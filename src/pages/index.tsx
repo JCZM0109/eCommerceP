@@ -16,9 +16,11 @@ import { Categories } from '@/models/Categories';
 import { Box, Container, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
 import { HomeProductsGrid } from '@/components/HomeProductsGrid';
-import bannerNewSeason from '/public/banner-new-season.jpg';
+
 import bannerSale from '/public/banner-sale.jpg';
-import { CenteredLabel } from '@/components/CenteredLabel';
+import bannerNewSeason from '/public/banner-new-season.jpg';
+import { PromoBanner } from '@/components/PromoBanner';
+
 
 
 //array con estos campos
@@ -43,6 +45,10 @@ type Props = {
 }
 
 //Componente de react, la pagina es todo un componente.
+
+
+
+
 
 
 
@@ -95,32 +101,22 @@ export default function CompReactexportado({ products, categories, productsGroup
             md: "2rem",
           }}>
             {/* This form of import is to be used when we know an image dimensions. */}
-            <Box position="relative">
-              <Image src={bannerNewSeason} alt=""></Image>
-              <Box position="absolute" left="50%" top="50%" transform="translate(-50%, -50%)">
-                <CenteredLabel>
-                  <Text fontSize="sm" color="gray.400">
-                    New season
-                  </Text>
-                  <Text fontSize="md" whiteSpace={'nowrap'} fontStyle="bold">
-                    Lookbook collection
-                  </Text>
-                </CenteredLabel>
-              </Box>
-            </Box>
-            <Box position="relative">
-              <Image src={bannerSale} alt=""></Image>
-              <Box position="absolute" left="50%" top="50%" transform="translate(-50%, -50%)">
-                <CenteredLabel>
-                  <Text fontSize="sm" color="gray.400">
-                    Sale
-                  </Text>
-                  <Text fontSize="md" whiteSpace={'nowrap'} fontStyle="bold">
-                    Get up to <Text as="span" color="red">50% Off</Text>
-                  </Text>
-                </CenteredLabel>
-              </Box>
-            </Box>
+            <PromoBanner image={bannerNewSeason}>
+              <Text fontSize="sm" color="gray.400">
+                New season
+              </Text>
+              <Text fontSize="md" whiteSpace={'nowrap'} fontStyle="bold">
+                Lookbook collection
+              </Text>
+            </PromoBanner>
+            <PromoBanner image={bannerSale}>
+              <Text fontSize="sm" color="gray.400">
+                Sale
+              </Text>
+              <Text fontSize="md" whiteSpace={'nowrap'} fontStyle="bold">
+                Get up to <Text as="span" color="red">50% Off</Text>
+              </Text>
+            </PromoBanner>
           </SimpleGrid>
         </Container>
 
