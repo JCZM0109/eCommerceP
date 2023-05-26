@@ -38,7 +38,7 @@ export function TopBar() {
                     <Box as="nav" zIndex={2} borderLeft="2px" marginLeft="2px" borderColor={"gray"}>
                         <Menu>
                             <MenuButton 
-                                variant="buttonMobile"
+                                bg="none"
                                 as={Button}
                                 padding='0 2px'
                                 fontSize="xs"

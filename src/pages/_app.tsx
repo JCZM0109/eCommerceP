@@ -7,21 +7,45 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 import '@fontsource/spartan/400.css'
 import '@fontsource/spartan/700.css'
 
-const buttonMobile = defineStyle({
-  color: 'brand.100',
-  bg: 'black',
-})
 
 export const buttonTheme = defineStyleConfig({
   defaultProps: {
-    colorScheme: 'brand',
+    variant: 'primary',
   },
   baseStyle: {
-    fontWeight: 'bold',
+    fontWeight: 'normal',
     textTransform: 'uppercase',
-    padding: '0 2.5rem',
+    borderRadius: 'none',
+    paddinX: '1.5rem',
+    _hover: {
+      bgColor: 'brand.800',
+    },
   },
-  variants: {buttonMobile},
+  sizes: {
+    sm: {
+      fontSize: '0.75rem',
+    },
+    md: {
+      fontSize: '0.8125rem',
+    },
+    lg: {
+      fontSize: '0.8125rem',
+    },
+    xl: {
+      fontSize: '1rem',
+      height: '3.5556rem',
+      paddingX: '3rem',
+    },
+  },
+  variants: {
+    primary: {
+      bgColor: 'brand.900',
+      color: 'white',
+    },
+    danger: {
+      bgColor: 'red.500',
+    },
+  },
 })
 
 
