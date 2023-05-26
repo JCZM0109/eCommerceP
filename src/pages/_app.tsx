@@ -24,14 +24,6 @@ export const buttonTheme = defineStyleConfig({
   variants: {buttonMobile},
 })
 
-const sizes = {
-  lg: defineStyle({
-    maxW: '1110px',
-    p: 0
-  }),
-}
-
-export const containerTheme = defineStyleConfig({ sizes })
 
 const theme = extendTheme({
   fonts: {
@@ -40,7 +32,11 @@ const theme = extendTheme({
   },
   components: {
     Button: buttonTheme,
-    Container: containerTheme
+    Container: {
+      baseStyle: {
+        maxW: '71.375rem',
+      }
+    }
   },
   colors: {
     brand:{

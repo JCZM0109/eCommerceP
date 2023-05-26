@@ -68,9 +68,7 @@ export default function Home({ products, categories, productsGroupedByCategory }
         <Header />
       </Box>
       <main>
-        <Container size={{
-          lg: "lg",
-        }}>
+        <Container >
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
           <AdvantageSection />
         </Container>
@@ -95,7 +93,7 @@ export default function Home({ products, categories, productsGroupedByCategory }
           })}
         </Container>
 
-        <Container size={{ lg: 'lg' }}>
+        <Container>
           <SimpleGrid minChildWidth={255} spacing={{
             base: "1rem",
             md: "2rem",

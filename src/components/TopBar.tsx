@@ -27,9 +27,7 @@ const tmenu = [
 //p={{ base: 0, sm: 2 }}
 export function TopBar() {
     return (<Box bg="black" w='100%' p={{ base: 0, sm: 2 }}>
-        <Container as={Flex} color="white" justifyContent={"space-between"} fontSize="xs" size={{
-            lg: "lg",
-        }}>
+        <Container as={Flex} color="white" justifyContent={"space-between"} fontSize="xs">
             <Flex gap={{ base: ".5rem", md: "1.5rem" }}>
                 {
                     tmenu.map((item) => {
