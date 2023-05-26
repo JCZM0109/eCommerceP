@@ -43,7 +43,6 @@ export function TopBar() {
                                 padding='0 2px'
                                 fontSize="xs"
                                 textTransform="capitalize"
-                                fontWeight="normal"
                                 aria-label='Options'>More...</MenuButton>
                             <MenuList>
                                 {

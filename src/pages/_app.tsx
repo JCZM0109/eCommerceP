@@ -17,9 +17,9 @@ export const buttonTheme = defineStyleConfig({
     colorScheme: 'brand',
   },
   baseStyle: {
-    fontWeight: 'bold',
     textTransform: 'uppercase',
-    padding: '0 2.5rem',
+    fontWeight: 'normal',
+    borderRadius: '0',
   },
   variants: {buttonMobile},
 })
