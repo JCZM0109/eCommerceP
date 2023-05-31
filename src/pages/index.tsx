@@ -17,11 +17,17 @@ import { Box, Button, Container, Flex, FormControl, FormHelperText, FormLabel, G
 import { AdvantageSection } from '@/components/AdvantageSection';
 import { HomeProductsGrid } from '@/components/HomeProductsGrid';
 import { PromoBanner } from '@/components/PromoBanner';
+import { BlogPostCard } from '@/components/BlogPostCard';
 
 import bannerSale from '/public/banner-sale.jpg';
 import bannerNewSeason from '/public/banner-new-season.jpg';
 import womenStanding from '/public/woman-standing.png';
 import menWalking from '/public/men-walking.png';
+import blogPic1 from '/public/blog-pic-01.jpg';
+import blogPic3 from '/public/blog-pic-03.jpg';
+import blogPic2 from '/public/blog-pic-02.jpg';
+
+
 
 
 
@@ -76,27 +82,6 @@ export default function Home({ products, categories, productsGroupedByCategory }
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
           <AdvantageSection />
         </Container>
-
-        <Container
-          maxW={{
-            base: "100%",
-            md: "1110px",
-          }} paddingX="0">
-          {Object.entries(productsGroupedByCategory).map(([category, products]) => {
-            return (
-              <Box key={category} mb="4rem">
-                <Heading as="h2" size="md" textTransform="uppercase" margin={{
-                  base: "0 0 1rem .5rem",
-                  md: "0 0 1.5rem",
-                }}>
-                  {category}
-                </Heading>
-                <HomeProductsGrid products={products} />
-              </Box>
-            );
-          })}
-        </Container>
-
         <Container>
           <SimpleGrid minChildWidth={255} spacing={{
             base: "1rem",
@@ -121,7 +106,7 @@ export default function Home({ products, categories, productsGroupedByCategory }
             </PromoBanner>
           </SimpleGrid>
         </Container>
-
+        
         <Container background={'linear-gradient( #F3F2F2 0%, #DCDBDB 100%);'} m={{
           base: "14.75rem 0 0",
           md: "2rem auto",
@@ -200,6 +185,53 @@ export default function Home({ products, categories, productsGroupedByCategory }
             </Grid>
           </Flex>
         </Container>
+        
+        {/* <Container
+          maxW={{
+            base: "100%",
+            md: "1110px",
+          }} paddingX="0">
+          {Object.entries(productsGroupedByCategory).map(([category, products]) => {
+            return (
+              <Box key={category} mb="4rem">
+                <Heading as="h2" size="md" textTransform="uppercase" margin={{
+                  base: "0 0 1rem .5rem",
+                  md: "0 0 1.5rem",
+                }}>
+                  {category}
+                </Heading>
+                <HomeProductsGrid products={products} />
+              </Box>
+            );
+          })}
+        </Container> */}
+
+        <Container>
+          <Heading as="h2" fontSize="2xl" textTransform="uppercase" m="2rem">Latest from blogpost</Heading>
+          <SimpleGrid minChildWidth="300px" spacing={{
+            base: "2.5rem",
+            md: "1.5rem"
+          }}>
+            <BlogPostCard 
+              image={blogPic1}
+              title="The Easiest Way to Break"
+              summary="But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor"
+            />
+            <BlogPostCard 
+              image={blogPic2}
+              title="Wedding Season"
+              summary="But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor"
+            />
+            <BlogPostCard 
+              image={blogPic3}
+              title="Recent Favorites On Repeat"
+              summary="But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor"
+            />
+
+          </SimpleGrid>
+        </Container>
+
+ 
 
 
         {/* {<HomeProductsGrid products={products}></HomeProductsGrid>}  */}
