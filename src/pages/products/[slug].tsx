@@ -1,13 +1,29 @@
+import Image from "next/image";
+
 import { slugify } from "@/utils/slugify";
 import { Product } from "@/pages";
+import { AspectRatio, Box, Button } from "@chakra-ui/react";
 
 type Props = {
   product: Product;
 }
 
-export default function ProductPage({ product }: Props) {
-  console.log(product);
-  return <h1>{product.title}</h1>;
+export default function ProductPage({ product: {title, price, rating, category, image, description} }: Props) {
+  return (
+    <>
+      <h1>{title}</h1>
+      <p>{price}</p>
+      <p>{rating.count}, {rating.rate}</p>
+      <p>{category}</p>
+      <p>{description}</p>
+      <Box w="340px">
+      <AspectRatio position="relative" ratio={1} maxWidth="100%" marginBottom="1rem">
+        <Image src={image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image>
+      </AspectRatio>
+      </Box>
+      <Button>Add to cart</Button>
+    </>
+  );
 }
 
 
