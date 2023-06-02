@@ -49,7 +49,6 @@ export type Product = {
 
 
 type Props = {
-  products: Product[],
   categories: Categories[],
   productsGroupedByCategory: GroupedProducts[],
 }
@@ -62,7 +61,7 @@ type Props = {
 
 
 
-export default function Home({ products, categories, productsGroupedByCategory }: Props) {
+export default function Home({categories, productsGroupedByCategory }: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
     <>
@@ -186,7 +185,7 @@ export default function Home({ products, categories, productsGroupedByCategory }
           </Flex>
         </Container>
         
-        {/* <Container
+        <Container
           maxW={{
             base: "100%",
             md: "1110px",
@@ -204,7 +203,7 @@ export default function Home({ products, categories, productsGroupedByCategory }
               </Box>
             );
           })}
-        </Container> */}
+        </Container>
 
         <Container>
           <Heading as="h2" fontSize="2xl" textTransform="uppercase" m="2rem">Latest from blogpost</Heading>
@@ -240,7 +239,7 @@ export default function Home({ products, categories, productsGroupedByCategory }
   )
 }
 //esta parte del código se ejecuta en el servidor, se está tratando de obtener el contenido antes de cargar la página.
-export async function getServerSideProps(context: GetServerSidePropsContext): Promise<{ props: { products: any; categories: any; }; }> {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const products = await fetch('https://fakestoreapi.com/products')
     .then(res => res.json());
@@ -252,7 +251,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext): Pr
 
   return {
     props: {
-      products,
       categories,
       productsGroupedByCategory,
     },
