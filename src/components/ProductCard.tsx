@@ -10,14 +10,17 @@ export function ProductCard({ image, title, price, rating }: Product) {
             <Image src={image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image>
         </AspectRatio>
         <Text height="36px" color="gray.600" marginBottom="0.75rem" fontSize="xs" noOfLines={2}>{title}</Text>
-        <Flex alignItems="center"  justifyContent="space-between">
+        <Flex alignItems="center" justifyContent="space-between">
             <Text>${price}</Text>
             <Flex gap="2px">
-                <StarIcon color="orange" />
-                <StarIcon color="orange" />
-                <StarIcon color="orange" />
-                <StarIcon color="orange" />
-                <StarIcon color="gray.300" />
+                <Flex gap=".15rem">
+                    {
+                        Array(Math.round(rating.rate)).fill(null).map((_, i) => <StarIcon key={i} color="orange" />)
+                    }
+                    {
+                        Array(Math.round(5 - rating.rate)).fill(null).map((_, i) => <StarIcon key={i} color="gray.300" />)
+                    }
+                </Flex>
             </Flex>
         </Flex>
     </Box>

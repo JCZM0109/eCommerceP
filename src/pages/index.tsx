@@ -3,9 +3,6 @@ import Head from 'next/head'
 import { GetServerSidePropsContext } from 'next';
 import Image from "next/image";
 
-
-import { TopBar } from '@/components/TopBar';
-import { Header } from '@/components/Header';
 import { GroupedProducts, groupProductsByCategory } from '@/utils/groupProductsByCategory';
 
 
@@ -13,7 +10,7 @@ import { GroupedProducts, groupProductsByCategory } from '@/utils/groupProductsB
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Box, Button, Container, Flex, FormControl, FormHelperText, FormLabel, Grid, Heading, Input, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, Button, Container, Flex, FormControl, Grid, Heading, Input, SimpleGrid, Text } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
 import { HomeProductsGrid } from '@/components/HomeProductsGrid';
 import { PromoBanner } from '@/components/PromoBanner';
@@ -72,10 +69,6 @@ export default function Home({categories, productsGroupedByCategory }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <TopBar />
-      <Box marginBottom={{ base: "0", lg: "32px" }}>
-        <Header />
-      </Box>
       <main>
         <Container >
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
