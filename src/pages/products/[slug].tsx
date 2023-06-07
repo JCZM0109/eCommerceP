@@ -2,9 +2,11 @@ import Image from "next/image";
 
 import { slugify } from "@/utils/slugify";
 import { Product } from "@/pages";
-import { AspectRatio, Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
+import { AspectRatio, Box, Button, Text, Container, Flex, Heading, UnorderedList, ListItem, ListIcon } from "@chakra-ui/react";
 import Link from "next/link";
-import { StarIcon } from "@chakra-ui/icons";
+import { StarsRating } from "@/components/StarsRating";
+import { ShareIcon } from "@/icons/Share";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 type Props = {
   product: Product;
@@ -15,32 +17,36 @@ export default function ProductPage({ product: { id, title, price, rating, categ
     <>
       <Box bg="gray.100" padding="1rem">
         <Container>
-          <Flex justifyContent="space-between" alignItems="center" fontSize="xs" mb="1rem">
-            <Flex as="ul" listStyleType="none" gap="1rem">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href={`${category}`}>{category}</Link></li>
-              <li>{title}</li>
+          <Flex justifyContent="space-between" alignItems="center" fontSize="sm" mb="1rem">
+            <Flex as={UnorderedList} listStyleType="none" m="0">
+              <ListItem>
+                <Link href="/">Home</Link>
+              </ListItem>
+              <ListItem textTransform="capitalize">
+                <ListIcon as={ChevronRightIcon} w="20px" h="20px" mx=".5rem" />
+                <Link href={`${category}`}>{category}</Link>
+              </ListItem>
+              <ListItem>
+                <ListIcon as={ChevronRightIcon} w="20px" h="20px" mx=".5rem" />
+                {title}
+              </ListItem>
             </Flex>
-            <Button>Share</Button>
-          </Flex>
-          <Heading as="h1" fontSize="2xl" textAlign="center">{title}</Heading>
-          <Flex justifyContent="space-between" alignItems="center" fontSize="xs">
-            {/* <p>Rating: {rating.rate} // {rating.count} Reviews</p> */}
-            <p>
-              <Flex gap=".15rem">
-                {
-                  Array(Math.round(rating.rate)).fill(null).map((_, i) => <StarIcon key={i} color="orange" />)
-                }
-                {
-                  Array(Math.round(5 - rating.rate)).fill(null).map((_, i) => <StarIcon key={i} color="gray.300" />)
-                }
-                {rating.count} Reviews
-              </Flex>
-            </p>
+            {/* <Flex as={Link} alignItems="center" gap="0.5rem" href="#"><Image src="/ico-share.svg" width={24} height={24} alt=""/>Share</Flex> */}
 
-            <Flex gap=".5rem">
-              <p>SKU: {id}</p>
-              <p>Availability: In stock</p>
+            <Button color="gray" leftIcon={<ShareIcon w={18} h={18} />} variant="ghost">Share</Button>
+          </Flex>
+          <Heading as="h1" fontSize="2xl" textAlign="center" my="1.5rem">{title}</Heading>
+          <Flex justifyContent="space-between" alignItems="center" fontSize="sm">
+            {/* <p>Rating: {rating.rate} // {rating.count} Reviews</p> */}
+            <Flex gap=".6rem" alignItems="baseline">
+              <StarsRating rate={rating.rate} />
+              <Text>{rating.count} Reviews</Text>
+            </Flex>
+
+
+            <Flex gap="1.5rem">
+              <Text>SKU: <b>{id}</b></Text>
+              <Text>Availability: <b>In stock</b></Text>
             </Flex>
           </Flex>
         </Container>

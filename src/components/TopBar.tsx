@@ -31,7 +31,8 @@ export function TopBar() {
             <Flex gap={{ base: ".5rem", md: "1.5rem" }}>
                 {
                     tmenu.map((item) => {
-                    return <Flex as={Link} key={item.key} display={item.display} href={item.href} alignItems="center" gap="0.5rem"><Image src={item.src} width={24} height={24} alt="" />{item.content}</Flex>
+                    return <Flex as={Link} key={item.key} display={item.display} href={item.href} alignItems="center" gap="0.5rem">
+                        <Image src={item.src} width={24} height={24} alt="" />{item.content}</Flex>
                 })}
                 <Show below="sm">
                 <Flex>
