@@ -7,7 +7,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 const menu = [
     {
         title: 'About us',
-        href: '#',
+        href: '/about_us',
     }, {
         title: 'Women',
         href: '#',

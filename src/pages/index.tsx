@@ -1,7 +1,6 @@
 import Head from 'next/head'
 
 import { GetServerSidePropsContext } from 'next';
-import Image from "next/image";
 
 import { GroupedProducts, groupProductsByCategory } from '@/utils/groupProductsByCategory';
 
@@ -10,7 +9,7 @@ import { GroupedProducts, groupProductsByCategory } from '@/utils/groupProductsB
 import * as React from 'react';
 import { HomeHeroCategories } from '@/components/HomeHeroCategories';
 import { Categories } from '@/models/Categories';
-import { Box, Button, Container, Flex, FormControl, Grid, Heading, Input, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, Container, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { AdvantageSection } from '@/components/AdvantageSection';
 import { HomeProductsGrid } from '@/components/HomeProductsGrid';
 import { PromoBanner } from '@/components/PromoBanner';
@@ -18,11 +17,10 @@ import { BlogPostCard } from '@/components/BlogPostCard';
 
 import bannerSale from '/public/banner-sale.jpg';
 import bannerNewSeason from '/public/banner-new-season.jpg';
-import womenStanding from '/public/woman-standing.png';
-import menWalking from '/public/men-walking.png';
 import blogPic1 from '/public/blog-pic-01.jpg';
 import blogPic3 from '/public/blog-pic-03.jpg';
 import blogPic2 from '/public/blog-pic-02.jpg';
+import { SubscribeBanner } from '@/components/SubscribeBanner';
 
 
 
@@ -56,9 +54,7 @@ type Props = {
 
 
 
-
-
-export default function Home({categories, productsGroupedByCategory }: Props) {
+export default function Home({ categories, productsGroupedByCategory }: Props) {
   //render con react es con map, se cogieron los productos de los props exportados directamente (iteraciones)
   return (
     <>
@@ -70,7 +66,7 @@ export default function Home({categories, productsGroupedByCategory }: Props) {
       </Head>
 
       <main>
-        <Container >
+        <Container marginTop={{ base: "0", lg: "32px" }}>
           <HomeHeroCategories categories={categories}></HomeHeroCategories>
           <AdvantageSection />
         </Container>
@@ -98,86 +94,9 @@ export default function Home({categories, productsGroupedByCategory }: Props) {
             </PromoBanner>
           </SimpleGrid>
         </Container>
-        
-        <Container background={'linear-gradient( #F3F2F2 0%, #DCDBDB 100%);'} m={{
-          base: "14.75rem 0 0",
-          md: "2rem auto",
-        }} p={{
-          base: "1.5rem",
-          md: "3.55rem",
-        }} maxW="100%" position="relative">
-          <Box position={"absolute"} w={{
-            base: "99px",
-            md: "219px",
-          }} h={{
-            base: "236px",
-            md: "524px",
-          }}
-          top={{
-            base: "calc(-236px + 1.5rem)",
-            md: "initial",
-          }}
-          bottom={{
-            md: "0",
-          }}
-          right={{
-            base: "2rem",
-            md: "50%",
-          }}
-          transform={{
-            md: "translateX(470px)",
-          }}>
-            <Image src={menWalking} alt='' fill={true} style={{ objectFit: 'cover'}}/>
-          </Box>
-          <Box position={"absolute"} w={{
-            base: "128px",
-            md: "311px",
-          }} h={{
-            base: "242px",
-            md: "545px",
-          }} top={{
-            base: "calc(-242px + 1.5rem)",
-            md: "initial",
-          }} bottom={{
-            md: "0",
-          }} left={{
-            base: "1.5rem",
-            md: "50%",
-          }} transform={{
-            md: "translateX(-530px)",
-          }}>
-            <Image src={womenStanding} alt='' fill={true} style={{ objectFit: 'cover'}} />
-          </Box>
-          <Flex 
-            h={{
-            md: "28.75rem",
-            }} 
-            maxW="33rem" margin="auto" as="article" bgColor="white" p="2rem" textTransform="uppercase">
-            <Grid gap="2rem" maxW="22rem" m="auto" textAlign="center" >
-              <header>
-                <Heading size="sm" color="gray">
-                  Special Offer
-                </Heading>
-                <Heading size="lg">
-                  Subscribe <br></br> and <Text as="span" color="red">get 10% off</Text>
-                </Heading>
-              </header>
-              < Grid as="form" action='' gap="1.5rem">
-                <FormControl>
-                  <Input
-                    type='email'
-                    borderRadius="0"
-                    textAlign="inherit"
-                    placeholder="Enter your email"
-                    h="4rem"
-                    backgroundColor="gray.100" />
-                </FormControl>
-                <Button bgColor="black" size="lg" h="4rem" borderRadius="0" w="100%">Subscribe</Button>
-              </Grid>
-            </Grid>
-          </Flex>
-        </Container>
-        
+
+        <SubscribeBanner/>
+
         <Container
           maxW={{
             base: "100%",
@@ -204,17 +123,17 @@ export default function Home({categories, productsGroupedByCategory }: Props) {
             base: "2.5rem",
             md: "1.5rem"
           }}>
-            <BlogPostCard 
+            <BlogPostCard
               image={blogPic1}
               title="The Easiest Way to Break"
               summary="But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor"
             />
-            <BlogPostCard 
+            <BlogPostCard
               image={blogPic2}
               title="Wedding Season"
               summary="But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor"
             />
-            <BlogPostCard 
+            <BlogPostCard
               image={blogPic3}
               title="Recent Favorites On Repeat"
               summary="But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor"
@@ -223,7 +142,7 @@ export default function Home({categories, productsGroupedByCategory }: Props) {
           </SimpleGrid>
         </Container>
 
- 
+
 
 
         {/* {<HomeProductsGrid products={products}></HomeProductsGrid>}  */}

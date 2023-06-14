@@ -86,7 +86,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <TopBar />
-      <Box marginBottom={{ base: "0", lg: "32px" }}>
+      <Box>
         <Header />
       </Box>
       <Component {...pageProps} />

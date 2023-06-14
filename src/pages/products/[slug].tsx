@@ -1,97 +1,99 @@
 import Image from "next/image";
+import Link from "next/link";
 
+
+import { AspectRatio, Button, Text, Container, Flex, Heading, ListItem, GridItem, Grid, List, Divider } from "@chakra-ui/react";
+
+import { PDPHeader } from "@/components/PDPHeader";
 import { slugify } from "@/utils/slugify";
 import { Product } from "@/pages";
-import { AspectRatio, Box, Button, Text, Container, Flex, Heading, UnorderedList, ListItem, ListIcon, SimpleGrid, GridItem, Grid, List, Divider } from "@chakra-ui/react";
-import Link from "next/link";
-import { StarsRating } from "@/components/StarsRating";
-import { ShareIcon } from "@/icons/Share";
-import { ChevronRightIcon } from "@chakra-ui/icons";
+
+import like from '/public/ico-like.svg';
+import legal from '/public/ico-legal.svg';
+
+import aes from '/public/logo_aes256.png';
+import amex from '/public/logo_amex.png';
+import mastercard from '/public/logo_mastercard.png';
+import paypal from '/public/logo_paypal.png';
+import visa from '/public/logo_visa.png';
+import stripe from '/public/logo_stripe.png';
+import discover from '/public/logo_discover.png';
+
+import truck from '/public/ico-truck.svg';
+import ireturn from '/public/ico-return.svg';
+import mail from '/public/ico-mail.svg';
 
 type Props = {
   product: Product;
 }
 
+
+function Price({ price }: { price: number }) {
+  const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price);
+
+  return <p>{currency}</p>;
+}
+
 export default function ProductPage({ product: { id, title, price, rating, category, image, description } }: Props) {
   return (
     <>
-      <Box bg="gray.100" padding="1rem" mb="2rem">
-        <Container>
-          <Flex justifyContent="space-between" alignItems="center" fontSize={{
-            base: "2xs",
-            md: "sm",
-            }} mb="1rem">
-            <Flex as={UnorderedList} listStyleType="none" m="0">
-              <ListItem>
-                <Link href="/">Home</Link>
-              </ListItem>
-              <ListItem textTransform="capitalize">
-                <ListIcon as={ChevronRightIcon} w={{base: "15px", md:"20px"}} h={{base: "15px", md:"20px"}} mx={{base: "0.2rem", md: ".5rem"}} />
-                <Link href={`${category}`}>{category}</Link>
-              </ListItem>
-              <ListItem>
-                <ListIcon as={ChevronRightIcon} w={{base: "15px", md:"20px"}} h={{base: "15px", md:"20px"}} mx={{base: "0.2rem", md: ".5rem"}} />
-                {title}
-              </ListItem>
-            </Flex>
-            {/* <Flex as={Link} alignItems="center" gap="0.5rem" href="#"><Image src="/ico-share.svg" width={24} height={24} alt=""/>Share</Flex> */}
-
-            <Button color="gray" leftIcon={<ShareIcon w={18} h={18} />} variant="ghost">Share</Button>
-          </Flex>
-          <Heading as="h1" fontSize="2xl" textAlign="center" my="1.5rem">{title}</Heading>
-          <Flex justifyContent="space-between" alignItems="center" fontSize="sm">
-            {/* <p>Rating: {rating.rate} // {rating.count} Reviews</p> */}
-            <Flex gap=".6rem" alignItems="baseline">
-              <StarsRating rate={rating.rate} />
-              <Text>{rating.count} Reviews</Text>
-            </Flex>
-            <Flex gap="1.5rem">
-              <Text fontSize={{
-            base: "2xs",
-            md: "sm",
-            }}>SKU: <b>{id}</b></Text>
-              <Text fontSize={{
-            base: "2xs",
-            md: "sm",
-            }}>Availability: <b>In stock</b></Text>
-            </Flex>
-          </Flex>
-        </Container>
-      </Box>
-      <Container>
-        <Grid gridTemplateColumns={{
-          base: "auto",
-          md: "repeat(2, 1fr)",
-        }} gridTemplateRows={{
-          base: "repeat(2, 1fr)",
-          md: "auto",
-        }} gap="3rem">
-          <GridItem w="25rem">
-              <AspectRatio position="relative" ratio={1} maxWidth="100%" marginBottom="1rem">
-                <Image src={image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image>
-              </AspectRatio>
-          </GridItem>
-          <GridItem>
-            <List>
+      <PDPHeader id={id} title={title} rating={rating} category={category}></PDPHeader>
+      <Container as={Grid} gridTemplateColumns={{
+        base: "auto",
+        md: "558px 1fr",
+      }} gridTemplateRows={{
+        base: "repeat(2, 1fr)",
+        md: "auto",
+      }} gap="3rem">
+        <GridItem >
+          <AspectRatio position="relative" ratio={1} maxWidth="100%" marginBottom="1rem">
+            <Image src={image} alt={''} fill={true} style={{ objectFit: "contain" }}></Image>
+          </AspectRatio>
+        </GridItem>
+        <GridItem>
+          <List>
             <ListItem>
-                <Heading as="h3" textTransform="uppercase" fontSize="md" mb="1rem">Description</Heading>
-                <Text>{description}</Text>
-              </ListItem>
-              <Divider orientation="horizontal" color="gray.300" borderWidth="1px" m="1.5rem 0" />
-              <ListItem>
-                <Flex gap="3rem" alignItems="center">
-                <Text fontWeight="bold" fontSize="2xl"> ${price}</Text>
+              <Heading as="h3" textTransform="uppercase" fontSize="md" mb="1rem" color="gray.500">Description</Heading>
+              <Text>{description}</Text>
+            </ListItem>
+            <Divider orientation="horizontal" color="gray.300" borderWidth="2px" m="1.5rem 0" />
+            <ListItem>
+              <Flex gap="1.5rem" alignItems="center">
+                <Text fontWeight="bold" fontSize="xl"><Price price={price} /></Text>
                 <Button>Add to cart</Button>
-                </Flex>
-              </ListItem>
-              <Divider orientation="horizontal" color="gray.300" borderWidth="1px" m="1.5rem 0" />
-              {/* <ListItem>
-                
-              </ListItem> */}
-            </List>
-
-          </GridItem>
-        </Grid>
+                <Link href="#">
+                  <Image src={like} width={40} height={40} alt='' />
+                </Link>
+                <Link href="#">
+                  <Image src={legal} width={40} height={40} alt='' />
+                </Link>
+              </Flex>
+            </ListItem>
+            <Divider orientation="horizontal" color="gray.300" borderWidth="2px" m="1.5rem 0" />
+          </List>
+          
+          <Flex gap="1.75rem" fontSize="xs" style={{ whiteSpace: "nowrap" }} >
+            <Flex as={Link} gap=".25rem" alignItems="center" href="#">
+              <Image src={truck} alt="" width="24"/>Shipping & Delivery
+            </Flex>
+            <Flex as={Link} gap=".25rem" alignItems="center" href="#">
+              <Image src={ireturn} alt="" width="24"/>Return & Exchanges
+            </Flex>
+            <Flex as={Link} gap=".25rem" alignItems="center" href="#">
+              <Image src={mail} alt="" width="24"/>Ask a question
+            </Flex>
+          </Flex>
+          <Divider orientation="horizontal" color="gray.300" borderWidth="2px" m="1.5rem 0" />
+          <Flex gap="1.5rem">
+            <Image src={amex} width={50} height={50} alt='' />
+            <Image src={mastercard} width={50} height={50} alt='' />
+            <Image src={visa} width={50} height={50} alt='' />
+            <Image src={stripe} width={50} height={50} alt='' />
+            <Image src={paypal} width={50} height={50} alt='' />
+            <Image src={discover} width={50} height={50} alt='' />
+            <Image src={aes} width={50} height={50} alt='' />
+          </Flex>
+        </GridItem>
       </Container>
 
 
