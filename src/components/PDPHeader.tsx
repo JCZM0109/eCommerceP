@@ -2,20 +2,20 @@ import { ShareIcon } from "@/icons/Share";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Button, Container, Flex, Heading, ListIcon, ListItem, UnorderedList } from "@chakra-ui/react";
 import { StarsRating } from "./StarsRating";
-import {Text} from "@chakra-ui/react"; 
+import { Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 type Props = {
     id: number;
     title: string;
-    rating: {  
+    rating: {
         count: number;
         rate: number;
-      }
+    }
     category: string;
 };
 
-export function PDPHeader({ id, title, rating, category}: Props) {
+export function PDPHeader({ id, title, rating, category }: Props) {
     return (
         <Box bg="gray.100" padding="1rem" mb="2rem">
             <Container>
@@ -24,10 +24,8 @@ export function PDPHeader({ id, title, rating, category}: Props) {
                     md: "sm"
                 }} mb="1rem">
                     <Flex as={UnorderedList} listStyleType="none" m="0">
-                        <ListItem>
+                        <ListItem whiteSpace="nowrap">
                             <Link href="/">Home</Link>
-                        </ListItem>
-                        <ListItem textTransform="capitalize">
                             <ListIcon as={ChevronRightIcon} w={{
                                 base: "15px",
                                 md: "20px"
@@ -38,20 +36,22 @@ export function PDPHeader({ id, title, rating, category}: Props) {
                                 base: "0.2rem",
                                 md: ".5rem"
                             }} />
+                        </ListItem>
+                        <ListItem textTransform="capitalize" whiteSpace="nowrap">
                             <Link href={`${category}`}>{category}</Link>
+                            <ListIcon as={ChevronRightIcon} w={{
+                                base: "15px",
+                                md: "20px"
+                            }} h={{
+                                base: "15px",
+                                md: "20px"
+                            }} mx={{
+                                base: "0.2rem",
+                                md: ".5rem"
+                            }} />
                         </ListItem>
                         <ListItem>
-                            <ListIcon as={ChevronRightIcon} w={{
-                                base: "15px",
-                                md: "20px"
-                            }} h={{
-                                base: "15px",
-                                md: "20px"
-                            }} mx={{
-                                base: "0.2rem",
-                                md: ".5rem"
-                            }} />
-                            {title}
+                            <Text noOfLines={1}>{title}</Text>
                         </ListItem>
                     </Flex>
                     {
@@ -82,5 +82,5 @@ export function PDPHeader({ id, title, rating, category}: Props) {
                 </Flex>
             </Container>
         </Box>
-        );
+    );
 }

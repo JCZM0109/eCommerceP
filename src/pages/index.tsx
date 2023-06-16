@@ -141,7 +141,7 @@ export default function Home({ categories, productsGroupedByCategory }: Props) {
 
           </SimpleGrid>
         </Container>
-
+          
 
 
 
@@ -160,6 +160,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     .then(res => res.json());
 
   const productsGroupedByCategory = groupProductsByCategory(products);
+  //console.log(productsGroupedByCategory.jewelery);
 
   return {
     props: {
