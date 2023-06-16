@@ -22,8 +22,7 @@ import discover from '/public/logo_discover.png';
 import truck from '/public/ico-truck.svg';
 import ireturn from '/public/ico-return.svg';
 import mail from '/public/ico-mail.svg';
-import { groupProductsByCategory } from "@/utils/groupProductsByCategory";
-import { HomeProductsGrid } from "@/components/HomeProductsGrid";
+
 
 type Props = {
   product: Product;
@@ -46,7 +45,7 @@ export default function ProductPage({ product: { id, title, price, rating, categ
       <PDPHeader id={id} title={title} rating={rating} category={category}></PDPHeader>
       <Container as={Grid} gridTemplateColumns={{
         base: "auto",
-        md: "538px 1fr",
+        md: "1fr 33.625rem",
       }} gridTemplateRows={{
         base: "repeat(2, 1fr)",
         md: "auto",
@@ -78,7 +77,7 @@ export default function ProductPage({ product: { id, title, price, rating, categ
             <Divider color="gray.300" borderWidth="2px" m="1.5rem 0" />
           </List>
 
-          <Flex gap="1.75rem" fontSize="xs" style={{ whiteSpace: "nowrap" }} >
+          <Flex gap="1.75rem" fontSize="xs" style={{ whiteSpace: "nowrap" }} mb=".5rem" >
             <Flex as={Link} gap=".25rem" alignItems="center" href="#">
               <Image src={truck} alt="" width="24" />Shipping & Delivery
             </Flex>
@@ -89,7 +88,12 @@ export default function ProductPage({ product: { id, title, price, rating, categ
               <Image src={mail} alt="" width="24" />Ask a question
             </Flex>
           </Flex>
-          <Flex alignItems="center" gap="1rem"><Heading textTransform="uppercase" fontSize="md" color="gray.500" whiteSpace="nowrap">Guaranteed safe checkout</Heading><Divider color="gray.300" borderWidth="2px" m="1.5rem 0" /></Flex>
+
+          <Flex alignItems="center" gap="1rem">
+            <Heading textTransform="uppercase" fontSize="md" color="gray.500" whiteSpace="nowrap">Guaranteed safe checkout</Heading>
+            <Divider color="gray.300" borderWidth="2px" m="1.5rem 0" />
+          </Flex>
+
           <Flex gap="1.5rem" justifyItems="space-between">
             {
               payment.map((item) => {
